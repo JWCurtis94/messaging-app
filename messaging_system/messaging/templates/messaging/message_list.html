@@ -1,3 +1,19 @@
-{% for message in messages %}
-  <p><strong>{{ message.sender.username }}:</strong> {{ message.content }}</p>
-{% endfor %}
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Messages</h2>
+
+  <h3>Sent Messages</h3>
+  {% for message in sent_messages %}
+      <p><strong>To {{ message.receiver.username }}:</strong> {{ message.content }}</p>
+  {% empty %}
+      <p>No sent messages.</p>
+  {% endfor %}
+
+  <h3>Received Messages</h3>
+  {% for message in received_messages %}
+      <p><strong>From {{ message.sender.username }}:</strong> {{ message.content }}</p>
+  {% empty %}
+      <p>No received messages.</p>
+  {% endfor %}
+{% endblock %}

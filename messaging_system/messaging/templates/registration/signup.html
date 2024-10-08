@@ -1,0 +1,11 @@
+{% extends 'base.html' %}  <!-- Assuming you have a base template -->
+
+{% block content %}
+  <h2>Sign Up</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}  <!-- This will automatically render the form fields -->
+      <button type="submit">Sign Up</button>
+  </form>
+  <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+{% endblock %}

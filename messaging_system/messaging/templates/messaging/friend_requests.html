@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Friend Requests</h2>
+
+  <h3>Received Requests</h3>
+  {% for request in received_requests %}
+      <p>{{ request.sender.username }}
+          <a href="{% url 'accept_friend_request' request.id %}">Accept</a> |
+          <a href="{% url 'reject_friend_request' request.id %}">Reject</a>
+      </p>
+  {% empty %}
+      <p>No received requests.</p>
+  {% endfor %}
+
+  <h3>Sent Requests</h3>
+  {% for request in sent_requests %}
+      <p>{{ request.receiver.username }} ({{ request.status }})</p>
+  {% empty %}
+      <p>No sent requests.</p>
+  {% endfor %}
+{% endblock %}
