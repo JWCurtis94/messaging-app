@@ -7,6 +7,9 @@ from .forms import FriendRequestForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def homepage(request):
+    return render(request, 'messaging/homepage.html')
+
 def message_list(request, user_id):
     messages = Message.objects.filter(receiver_id=user_id)
     return render(request, 'messaging/message_list.html', {'messages': messages})

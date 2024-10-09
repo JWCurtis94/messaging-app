@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r(r4$g$(=7s9rc)ufw)q&6bi+u0ovzd1n+bfh%xvn(yu0b$#lz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-jwcurtis94-messagingapp-kqvk0po9bt0.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-jwcurtis94-messagingapp-blmtdf64ivi.ws.codeinstitute-ide.net']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'messaging_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'messaging_system.wsgi.application'
 
