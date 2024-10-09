@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django-specific files
+db.sqlite3
+*.sqlite3
+*.log
+
+# ENV variables and sensitive information
+.env
+
+# Pytest and other test cache files
+.pytest_cache/
+coverage/
+.coverage
+htmlcov/
+
+# Virtual environment folders
+venv/
+env/
+ENV/
+
+# Static file compilation
+/staticfiles/
+/media/
+
+# Node.js folders and modules (if using npm or yarn for front-end)
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log*
+
+# macOS-specific files
+.DS_Store
+
+# JetBrains IDE (PyCharm) specific files
+.idea/
+
+# VSCode specific files
+.vscode/
+
+# Ignore any other temporary or backup files
+*.swp
+*.swo
+*.bak
+*.tmp
