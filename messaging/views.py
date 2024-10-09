@@ -7,6 +7,9 @@ from .forms import FriendRequestForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def base(request):
+    return render(request, 'base.html')
+
 def homepage(request):
     return render(request, 'messaging/homepage.html')
 

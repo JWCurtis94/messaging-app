@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-</head>
-<body>
-    <h1>Welcome to the Messaging App!</h1>
-</body>
-</html>
+{% extends 'messaging/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Messaging App</h1>
+    <p>This is the homepage where users can view recent messages and connect with friends.</p>
+
+    <!-- Add any additional homepage-specific content here -->
+    <div class="recent-messages">
+        <h2>Recent Messages</h2>
+        <p>Start messaging your friends or view your message history.</p>
+    </div>
+
+    <div class="connect">
+        <h2>Connect with Friends</h2>
+        <p>Send friend requests and connect with new users.</p>
+    </div>
+{% endblock %}
