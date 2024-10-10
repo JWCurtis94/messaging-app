@@ -1,19 +1,52 @@
 {% extends 'messaging/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home | Messaging App{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the Messaging App</h1>
-    <p>This is the homepage where users can view recent messages and connect with friends.</p>
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to the Messaging App</h1>
+            <p>Seamlessly connect, chat, and build friendships.</p>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'message_list' user.id %}" class="btn">View Your Messages</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn">Log in to Start Messaging</a>
+            {% endif %}
+        </div>
+    </section>
 
-    <!-- Add any additional homepage-specific content here -->
-    <div class="recent-messages">
-        <h2>Recent Messages</h2>
-        <p>Start messaging your friends or view your message history.</p>
-    </div>
+    <section class="section recent-messages">
+        <div class="container">
+            <h2>Recent Messages</h2>
+            <p>Start messaging your friends or view your message history.</p>
 
-    <div class="connect">
-        <h2>Connect with Friends</h2>
-        <p>Send friend requests and connect with new users.</p>
-    </div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'message_list' user.id %}" class="btn">Go to Messages</a>
+            {% else %}
+                <p>Please <a href="{% url 'login' %}">log in</a> to view your recent messages.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="section connect">
+        <div class="container">
+            <h2>Connect with Friends</h2>
+            <p>Send friend requests and connect with new users to expand your network.</p>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'friend_requests' %}" class="btn">Manage Friend Requests</a>
+            {% else %}
+                <p>Please <a href="{% url 'login' %}">log in</a> to manage your friend requests.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="section cta">
+        <div class="container">
+            <h2>Get Started Today</h2>
+            <p>If you're not signed up yet, register now and join the conversation!</p>
+            <a href="{% url 'signup' %}" class="btn btn-accent">Register Now</a>
+        </div>
+    </section>
 {% endblock %}

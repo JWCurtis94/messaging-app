@@ -1,50 +1,373 @@
-/*---------------------------- General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/*------------------------- Root Variables -------------------------*/
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --border-radius: 10px;
+    --navbar-height: 60px;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Roboto', Arial, sans-serif;
+}
+
+/*------------------------- General Styles -------------------------*/
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-h1 {
-    color: #333;
-    text-align: center;
+/*------------------------- Typography -------------------------*/
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
     margin-bottom: 20px;
 }
 
-h2 {
-    color: #007BFF;
-    margin-top: 20px;
+h1 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    text-align: center;
+    padding-bottom: 10px;
+    position: relative;
 }
 
-/*---------------------------- Section Styles */
-.recent-messages,
-.connect {
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+h1:hover::after {
+    width: 120px;
+}
+
+h2 {
+    font-size: 2em;
+    color: var(--secondary-color);
+}
+
+p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/*------------------------- Navbar Styles -------------------------*/
+.navbar {
+    background-color: var(--primary-color);
+    height: var(--navbar-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    color: white;
+    font-size: 1.8em;
+    font-family: var(--font-heading);
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li {
+    display: inline-block;
+}
+
+.navbar .nav-links a {
+    color: white;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.navbar .nav-links a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.navbar .burger-icon {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.navbar .burger-icon div {
+    width: 25px;
+    height: 3px;
     background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 2px;
+}
+
+/*------------------------- Section Styles -------------------------*/
+.section {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.recent-messages {
+    border-left: 5px solid var(--primary-color);
+}
+
+.connect {
+    border-left: 5px solid var(--secondary-color);
+}
+
+/*------------------------- Card Styles -------------------------*/
+.card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 8px var(--shadow-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.card-title {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.card-content {
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+/*------------------------- Button Styles -------------------------*/
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/*------------------------- Form Styles -------------------------*/
+input[type="text"], input[type="password"], textarea {
+    width: 100%;
     padding: 15px;
     margin: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    color: var(--text-color);
+    transition: border-color var(--transition-speed);
 }
 
-/*---------------------------- Paragraph Styles */
-p {
-    color: #555;
-    line-height: 1.5;
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
 
-/*---------------------------- Responsive Design */
-@media (max-width: 600px) {
+input[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--secondary-color);
+}
+
+/*------------------------- Animations -------------------------*/
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.navbar {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/*------------------------- Logo Styles -------------------------*/
+.logo img {
+    height: 50px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    transition: height 0.3s ease, width 0.3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: var(--navbar-height);
+    padding: 5px 10px;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        height: 40px;
+        max-width: 120px;
+    }
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/*------------------------- Custom Scrollbar -------------------------*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/*------------------------- Responsive Design -------------------------*/
+@media (max-width: 768px) {
     body {
-        padding: 10px;
+      padding: 15px;
     }
 
     h1 {
-        font-size: 24px;
+      font-size: 2em;
     }
 
     h2 {
-        font-size: 20px;
+      font-size: 1.5em;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .navbar .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: var(--navbar-height);
+      right: 0;
+      background-color: var(--primary-color);
+      width: 100%;
+      padding: 20px;
+    }
+
+    .navbar .nav-links.nav-open {
+      display: flex;
+    }
+
+    .navbar .burger-icon {
+      display: flex;
+    }
+}
+
+/*------------------------- Dark Mode Support -------------------------*/
+@media (prefers-color-scheme: dark) {
+    :root {
+      --background-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --shadow-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .section {
+      background-color: #2a2a2a;
+    }
+
+    .btn {
+      background-color: var(--secondary-color);
+    }
+
+    .btn:hover {
+      background-color: var(--primary-color);
     }
 }

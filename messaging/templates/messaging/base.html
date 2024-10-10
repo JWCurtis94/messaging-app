@@ -9,19 +9,51 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
+        <nav aria-label="Main Navigation">
+            <!-- Logo linking to homepage -->
+            <div class="logo">
+                <a href="{% url 'homepage' %}">
+                    <img src="{% static 'assets/MessagingLogo.webp' %}" alt="Messaging App Logo">
+                </a>
+            </div>
+    
+            <!-- Burger menu icon for mobile -->
+            <button class="burger-icon" id="burger-icon" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <!-- Navigation links -->
+            <ul class="nav-links" id="nav-links">
                 <li><a href="{% url 'homepage' %}">Home</a></li>
-                <li><a href="{% url 'message_list' %}">Messages</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
+    
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
+                    <li><a href="{% url 'message_list' user.id %}">Messages</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'friend_requests' %}">Friend Requests</a></li>
+                {% endif %}
+    
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Login</a></li>
+                {% else %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
+    
+    <script>
+        // JavaScript to toggle the burger menu
+        document.getElementById('burger-icon').addEventListener('click', function() {
+            var navLinks = document.getElementById('nav-links');
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('nav-open');
+        });
+    </script>
+    
 
     <main>
         {% block content %}

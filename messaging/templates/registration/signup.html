@@ -1,11 +1,54 @@
-{% extends 'base.html' %}  <!-- Assuming you have a base template -->
+{% extends 'messaging/base.html' %}
 
 {% block content %}
-  <h2>Sign Up</h2>
-  <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}  <!-- This will automatically render the form fields -->
-      <button type="submit">Sign Up</button>
-  </form>
-  <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Create Your Account</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <!-- Display form-wide errors, if any -->
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ form.non_field_errors }}
+            </div>
+          {% endif %}
+
+          <!-- Loop through the form fields and render them with labels and error handling -->
+          {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label">
+                {{ field.label }}{% if field.field.required %} <span class="text-danger">*</span>{% endif %}
+              </label>
+              {{ field }}
+
+              <!-- Display help text, if available -->
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+
+              <!-- Display field-specific errors, if any -->
+              {% if field.errors %}
+                <div class="text-danger">
+                  {{ field.errors }}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+
+          <!-- Sign Up button -->
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+          </div>
+        </form>
+
+        <!-- Login link -->
+        <p class="text-center mt-3">
+          Already have an account? <a href="{% url 'login' %}">Log in here</a>.
+        </p>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -6,4 +6,12 @@
   <p>Email: {{ user.email }}</p>
   <p>First Name: {{ user.first_name }}</p>
   <p>Last Name: {{ user.last_name }}</p>
+
+  <!-- Logout button -->
+  {% if user.is_authenticated %}
+    <form id="logout-form" method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+    </form>
+  {% endif %}
 {% endblock %}
