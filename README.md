@@ -39,7 +39,8 @@ This project is a simple messaging system built with Django, where users can con
 - Hompage Mid Section: ![Home Page Mid](https://github.com/user-attachments/assets/9eb6a5fb-fdb9-48ce-b873-e7f198c10a3a)
 - Homepage End Section: ![Home Page Bottom](https://github.com/user-attachments/assets/1b3d72ea-8caf-4286-881f-be6a64927ddb)
 - Message Page: ![Messages Page](https://github.com/user-attachments/assets/51b6add1-5ad1-4357-b58a-b2e3e731e689)
-- Friend Request Page: ![Friend Request Page](https://github.com/user-attachments/assets/80dd91d0-6b5a-4f52-aff4-4e4a5369387d)
+- Friend Request Page: ![Friend Request Page](https://github.com/user-attachments/assets/9664fb89-0713-4f83-89cb-619c9c82d1b7)
+
 
 
 ## Installation
