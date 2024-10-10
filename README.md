@@ -1,6 +1,8 @@
 # Messaging App
 
 This project is a simple messaging system built with Django, where users can connect with friends, send friend requests, and exchange messages. The app allows users to manage their friend lists and communicate in real-time with their connections.
+![Am I responsive](https://github.com/user-attachments/assets/85c671f3-1849-4773-9ed1-66890c4e009e)
+
 
 ## Table of Contents
 
@@ -9,6 +11,7 @@ This project is a simple messaging system built with Django, where users can con
 - [Wire Frames](#wireframes)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Responsiveness](#responsiveness)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
@@ -100,6 +103,10 @@ Follow these steps to get the project up and running on your local machine:
 1. **Register a new user**: Sign up with an email and password.
 2. **Friendship management**: Search for users, send friend requests, accept/reject requests.
 3. **Messaging**: Start a chat with any friend by going to your friends list, select the friend and send a message.
+
+## Responsivity
+- Desktop Responsivity: ![image](https://github.com/user-attachments/assets/6e6c586c-7f44-4de3-912e-e4d89280ad5e)
+- Mobile Responsivity: ![image](https://github.com/user-attachments/assets/c1464967-7f1c-40f5-8138-7abb136f738a)
 
 ## Future Enhancements
 
