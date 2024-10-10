@@ -1,19 +1,45 @@
 {% extends 'messaging/base.html' %}
 
+{% block title %}Your Messages{% endblock %}
+
 {% block content %}
-    <h2>Your Messages</h2>
+<div class="container">
+    <section class="section messages-section">
+        <h2>Your Messages</h2>
 
-    <h3>Sent Messages</h3>
-    <ul>
-        {% for message in sent_messages %}
-            <li>{{ message.content }} - sent to {{ message.receiver.username }} on {{ message.timestamp }}</li>
-        {% endfor %}
-    </ul>
+        <!-- Sent Messages Section -->
+        <h3>Sent Messages</h3>
+        {% if sent_messages %}
+        <div class="messages-list">
+            {% for message in sent_messages %}
+            <div class="message-card">
+                <div class="message-info">
+                    <p class="message-content">{{ message.content }}</p>
+                    <p class="message-meta">Sent to <strong>{{ message.receiver.username }}</strong> on {{ message.timestamp|date:"F j, Y, g:i a" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-messages">You haven't sent any messages yet.</p>
+        {% endif %}
 
-    <h3>Received Messages</h3>
-    <ul>
-        {% for message in received_messages %}
-            <li>{{ message.content }} - received from {{ message.sender.username }} on {{ message.timestamp }}</li>
-        {% endfor %}
-    </ul>
+        <!-- Received Messages Section -->
+        <h3>Received Messages</h3>
+        {% if received_messages %}
+        <div class="messages-list">
+            {% for message in received_messages %}
+            <div class="message-card">
+                <div class="message-info">
+                    <p class="message-content">{{ message.content }}</p>
+                    <p class="message-meta">Received from <strong>{{ message.sender.username }}</strong> on {{ message.timestamp|date:"F j, Y, g:i a" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-messages">You haven't received any messages yet.</p>
+        {% endif %}
+    </section>
+</div>
 {% endblock %}

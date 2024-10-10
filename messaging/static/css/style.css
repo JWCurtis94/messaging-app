@@ -100,47 +100,169 @@ a:hover {
     z-index: 1000;
 }
 
-.navbar .logo {
-    color: white;
-    font-size: 1.8em;
-    font-family: var(--font-heading);
+/* Logo Styling */
+.logo img {
+    height: 50px;
+    width: auto;
 }
 
-.navbar .nav-links {
+.logo {
+    display: flex;
+    align-items: center;
+    height: var(--navbar-height);
+    padding: 5px 10px;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Navigation Links Styling */
+.nav-links {
     list-style: none;
     display: flex;
     gap: 20px;
 }
 
-.navbar .nav-links li {
+.nav-links li {
     display: inline-block;
 }
 
-.navbar .nav-links a {
+.nav-links a {
     color: white;
     font-weight: 500;
     padding: 8px 15px;
     border-radius: var(--border-radius);
+    text-decoration: none;
     transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
-.navbar .nav-links a:hover {
+.nav-links a:hover {
     background-color: var(--secondary-color);
     transform: translateY(-3px);
 }
 
-.navbar .burger-icon {
+/*------------------------- Burger Icon for Mobile -------------------------*/
+.burger-icon {
     display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
 }
 
-.navbar .burger-icon div {
+.burger-icon span {
     width: 25px;
     height: 3px;
     background-color: white;
     border-radius: 2px;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .burger-icon {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: var(--navbar-height);
+        right: 0;
+        background-color: var(--primary-color);
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nav-links.nav-open {
+        display: flex;
+    }
+}
+
+/*------------------------- Hero Section -------------------------*/
+.hero {
+    background-color: var(--primary-color);
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border-radius: var(--border-radius);
+}
+
+.hero .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero h1 {
+    color: #ffffff; /* White text for better contrast */
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #ffffff; /* White text for paragraph */
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.hero h1, .hero p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Slight shadow for better readability */
+}
+
+.hero .btn {
+    background-color: var(--secondary-color);
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--transition-speed);
+}
+
+.hero .btn:hover {
+    background-color: var(--accent-color);
+}
+
+.hero-image {
+    max-width: 50%;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+/*------------------------- Responsive Adjustments for Hero Section -------------------------*/
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-content, .hero-image {
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
 }
 
 /*------------------------- Section Styles -------------------------*/
@@ -211,10 +333,6 @@ a:hover {
     transform: translateY(-2px);
 }
 
-.btn:active {
-    transform: translateY(0);
-}
-
 /*------------------------- Form Styles -------------------------*/
 input[type="text"], input[type="password"], textarea {
     width: 100%;
@@ -261,34 +379,6 @@ input[type="submit"]:hover {
     animation: slideIn 0.5s ease-in-out;
 }
 
-/*------------------------- Logo Styles -------------------------*/
-.logo img {
-    height: 50px;
-    width: auto;
-    max-width: 150px;
-    object-fit: contain;
-    transition: height 0.3s ease, width 0.3s ease;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    height: var(--navbar-height);
-    padding: 5px 10px;
-}
-
-@media (max-width: 768px) {
-    .logo img {
-        height: 40px;
-        max-width: 120px;
-    }
-}
-
-.logo img:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-}
-
 /*------------------------- Custom Scrollbar -------------------------*/
 ::-webkit-scrollbar {
     width: 10px;
@@ -307,67 +397,68 @@ input[type="submit"]:hover {
     background: var(--secondary-color);
 }
 
-/*------------------------- Responsive Design -------------------------*/
-@media (max-width: 768px) {
-    body {
-      padding: 15px;
-    }
-
-    h1 {
-      font-size: 2em;
-    }
-
-    h2 {
-      font-size: 1.5em;
-    }
-
-    .section {
-      padding: 20px;
-    }
-
-    .navbar .nav-links {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      position: absolute;
-      top: var(--navbar-height);
-      right: 0;
-      background-color: var(--primary-color);
-      width: 100%;
-      padding: 20px;
-    }
-
-    .navbar .nav-links.nav-open {
-      display: flex;
-    }
-
-    .navbar .burger-icon {
-      display: flex;
-    }
-}
-
 /*------------------------- Dark Mode Support -------------------------*/
 @media (prefers-color-scheme: dark) {
     :root {
-      --background-color: #1a1a1a;
-      --text-color: #f0f0f0;
-      --shadow-color: rgba(255, 255, 255, 0.1);
+        --background-color: #1a1a1a;
+        --text-color: #f0f0f0;
+        --shadow-color: rgba(255, 255, 255, 0.1);
     }
 
     body {
-      background-color: var(--background-color);
-      color: var(--text-color);
+        background-color: var(--background-color);
+        color: var(--text-color);
     }
 
     .section {
-      background-color: #2a2a2a;
+        background-color: #2a2a2a;
     }
 
     .btn {
-      background-color: var(--secondary-color);
+        background-color: var(--secondary-color);
     }
 
     .btn:hover {
-      background-color: var(--primary-color);
+        background-color: var(--primary-color);
     }
+}
+
+/*------------------------- Messages Section -------------------------*/
+.messages-section {
+    margin-top: 30px;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+.message-info {
+    font-size: 1em;
+}
+
+.message-content {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.message-meta {
+    font-size: 0.9em;
+    color: #888;
 }

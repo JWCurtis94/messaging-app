@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav aria-label="Main Navigation">
+        <nav class="navbar" aria-label="Main Navigation">
             <!-- Logo linking to homepage -->
             <div class="logo">
                 <a href="{% url 'homepage' %}">
@@ -52,8 +52,7 @@
             this.setAttribute('aria-expanded', !expanded);
             navLinks.classList.toggle('nav-open');
         });
-    </script>
-    
+    </script>   
 
     <main>
         {% block content %}
