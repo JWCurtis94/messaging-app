@@ -4,6 +4,10 @@ from .models import Message, Friendship
 from django.contrib.auth.forms import UserCreationForm
 from .forms import MessageForm, FriendRequestForm, CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
+from .models import Message
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
+
 
 def base(request):
     return render(request, 'base.html')
@@ -12,13 +16,15 @@ def homepage(request):
     return render(request, 'messaging/homepage.html')
 
 @login_required
-def message_list(request):
-    sent_messages = Message.objects.filter(sender=request.user)
-    received_messages = Message.objects.filter(receiver=request.user)
+def message_list(request, user_id):
+    user = get_object_or_404(User, id=user_id)  # Fetch the user by user_id
+    sent_messages = Message.objects.filter(sender=user)  # Fetch sent messages
+    received_messages = Message.objects.filter(receiver=user)  # Fetch received messages
     return render(request, 'messaging/message_list.html', {
         'sent_messages': sent_messages,
         'received_messages': received_messages,
     })
+
 
 def signup(request):
     if request.method == 'POST':
@@ -88,4 +94,4 @@ def reject_friend_request(request, friend_request_id):
 
 @login_required
 def profile(request):
-    return render(request, 'messaging/profile.html', {'user': request.user})
+    return render(request, 'messaging/homepage.html')
