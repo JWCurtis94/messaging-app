@@ -1,19 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
-from .models import Message, Friendship
-from django.contrib.auth.forms import UserCreationForm
-from .forms import MessageForm, FriendRequestForm, CustomUserCreationForm
-from django.contrib.auth.decorators import login_required
-from .models import Message
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+
+from .models import Message, Friendship
+from .forms import MessageForm, FriendRequestForm, CustomUserCreationForm
 
 
 def base(request):
     return render(request, 'base.html')
 
+
 def homepage(request):
     return render(request, 'messaging/homepage.html')
+
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+
+    def get_success_url(self):
+        # Redirect the user to their messages page after login
+        return reverse_lazy('message_list', kwargs={'user_id': self.request.user.id})
+
 
 @login_required
 def message_list(request, user_id):
@@ -32,10 +43,11 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('homepage')
+            return redirect('message_list', user_id=user.id)  # Redirect to message list after signup
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
 
 @login_required
 def send_message(request):
@@ -45,23 +57,28 @@ def send_message(request):
             message = form.save(commit=False)
             message.sender = request.user
             message.save()
-            return redirect('message_list')
+            return redirect('message_list', user_id=request.user.id)
     else:
         form = MessageForm()
     return render(request, 'messaging/send_message.html', {'form': form})
 
+
 @login_required
 def send_friend_request(request):
     if request.method == 'POST':
-        form = FriendRequestForm(request.POST)
-        if form.is_valid():
-            friend_request = form.save(commit=False)
-            friend_request.sender = request.user
-            friend_request.save()
-            return redirect('friend_requests')
-    else:
-        form = FriendRequestForm()
-    return render(request, 'messaging/send_friend_request.html', {'form': form})
+        username = request.POST.get('username')
+        try:
+            receiver = User.objects.get(username=username)
+            if receiver != request.user:
+                Friendship.objects.create(sender=request.user, receiver=receiver, status='requested')
+                return redirect('friend_requests')
+            else:
+                messages.error(request, "You cannot send a friend request to yourself.")
+        except User.DoesNotExist:
+            messages.error(request, "User does not exist.")
+    return redirect('friend_requests')
+
+
 
 @login_required
 def friend_requests(request):
@@ -71,6 +88,7 @@ def friend_requests(request):
         'received_requests': received_requests,
         'sent_requests': sent_requests,
     })
+
 
 @login_required
 def accept_friend_request(request, friend_request_id):
@@ -82,6 +100,7 @@ def accept_friend_request(request, friend_request_id):
         pass
     return redirect('friend_requests')
 
+
 @login_required
 def reject_friend_request(request, friend_request_id):
     try:
@@ -92,6 +111,7 @@ def reject_friend_request(request, friend_request_id):
         pass
     return redirect('friend_requests')
 
+
 @login_required
 def profile(request):
-    return render(request, 'messaging/homepage.html')
+    return render(request, 'messaging/profile.html', {'user': request.user})

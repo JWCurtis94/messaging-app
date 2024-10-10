@@ -1,22 +1,73 @@
 {% extends 'messaging/base.html' %}
 
 {% block content %}
-  <h2>Friend Requests</h2>
+<div class="friend-requests-section">
+    <div class="container friend-requests-container">
+        <!-- Send Friend Request Form -->
+        <div class="send-friend-request">
+            <h3>Send Friend Request</h3>
+            <form id="friend-request-form" method="post" onsubmit="handleSubmit(event)">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="username" id="username" placeholder="Enter username" required>
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+        </div>
 
-  <h3>Received Requests</h3>
-  {% for request in received_requests %}
-      <p>{{ request.sender.username }}
-          <a href="{% url 'accept_friend_request' request.id %}">Accept</a> |
-          <a href="{% url 'reject_friend_request' request.id %}">Reject</a>
-      </p>
-  {% empty %}
-      <p>No received requests.</p>
-  {% endfor %}
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">Friend request sent!</div>
 
-  <h3>Sent Requests</h3>
-  {% for request in sent_requests %}
-      <p>{{ request.receiver.username }} ({{ request.status }})</p>
-  {% empty %}
-      <p>No sent requests.</p>
-  {% endfor %}
+        <!-- Received Requests -->
+        <div class="received-requests">
+            <h3>Received Requests</h3>
+            <ul class="requests-list">
+                {% for request in received_requests %}
+                    <li class="request-item">
+                        <span class="request-username">{{ request.sender.username }}</span>
+                        <div class="request-actions">
+                            <a href="{% url 'accept_friend_request' request.id %}" class="btn btn-accept">Accept</a>
+                            <a href="{% url 'reject_friend_request' request.id %}" class="btn btn-reject">Reject</a>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="no-requests">No received requests.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Sent Requests -->
+        <div class="sent-requests">
+            <h3>Sent Requests</h3>
+            <ul class="requests-list">
+                {% for request in sent_requests %}
+                    <li class="request-item">
+                        <span class="request-username">{{ request.receiver.username }} ({{ request.status }})</span>
+                    </li>
+                {% empty %}
+                    <li class="no-requests">No sent requests.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for form reset and toast notification -->
+<script>
+function handleSubmit(event) {
+    event.preventDefault();  // Prevents form submission to reload the page
+
+    // Clear the form
+    document.getElementById('friend-request-form').reset();
+
+    // Show the toast notification
+    var toast = document.getElementById('toast');
+    toast.classList.add('show-toast');
+
+    // Hide the toast after 3 seconds
+    setTimeout(function() {
+        toast.classList.remove('show-toast');
+    }, 3000);
+}
+</script>
 {% endblock %}

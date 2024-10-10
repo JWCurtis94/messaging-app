@@ -462,3 +462,403 @@ input[type="submit"]:hover {
     font-size: 0.9em;
     color: #888;
 }
+
+/* General Friend Requests Section Styling */
+.friend-requests-section {
+    padding: 40px 0;
+    background-color: var(--background-color);
+}
+
+.friend-requests-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Headers Styling */
+h2, h3 {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Send Friend Request Box */
+.send-friend-request {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.send-friend-request:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.send-friend-request h3 {
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--primary-color);
+    position: relative;
+}
+
+/* Form Group Styling */
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-group input[type="text"] {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1.1em;
+    flex: 1;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+}
+
+.form-group button {
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Requests Box Styling */
+.received-requests, .sent-requests {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+}
+
+/* Requests List Styling */
+.requests-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.request-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.request-item:last-child {
+    border-bottom: none;
+}
+
+.request-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Request Username Styling */
+.request-username {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
+/* Request Actions Styling */
+.request-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-accept {
+    background-color: var(--secondary-color);
+}
+
+.btn-accept:hover {
+    background-color: darkgreen;
+}
+
+.btn-reject {
+    background-color: var(--accent-color);
+}
+
+.btn-reject:hover {
+    background-color: darkred;
+}
+
+/* No Requests Message Styling */
+.no-requests {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Toast Notification Styles */
+.toast {
+    visibility: hidden;
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.show-toast {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .request-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .request-actions {
+        justify-content: flex-start;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Profile Section Styles */
+.profile-section {
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: #fff;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #fff;
+}
+
+.profile-header h2 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    font-size: 1.3em;
+    opacity: 0.85;
+}
+
+/* Profile Card Styles */
+.profile-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 700px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-top: 6px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* Profile Info Styles */
+.profile-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-info p {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.profile-info strong {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Profile Action Buttons */
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.profile-actions .btn {
+    padding: 15px 30px;
+    background-color: var(--accent-color);
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-actions .btn:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .profile-section {
+        padding: 60px 20px;
+    }
+
+    .profile-header h2 {
+        font-size: 2.2em;
+    }
+
+    .profile-header p {
+        font-size: 1.1em;
+    }
+
+    .profile-card {
+        padding: 30px;
+    }
+
+    .profile-info p {
+        font-size: 1.2em;
+    }
+
+    .profile-actions .btn {
+        padding: 12px 25px;
+        font-size: 0.9em;
+    }
+}
+
+/* Button Hover Animations */
+.btn:active {
+    transform: scale(1);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Subtle Animation for Profile Section */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-section {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Profile Card Glow Effect */
+.profile-card:hover {
+    background-color: #fafafa;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.profile-actions .btn-danger {
+    background-color: var(--accent-color);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.profile-actions .btn-danger::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 30px;
+    z-index: -1;
+}
+

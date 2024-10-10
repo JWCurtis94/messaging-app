@@ -1,10 +1,54 @@
 {% extends 'messaging/base.html' %}
 
 {% block content %}
-  <h2>Send Friend Request</h2>
-  <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Send Request</button>
-  </form>
+<div class="friend-request-section">
+    <div class="send-friend-request">
+        <h2>Send a Friend Request</h2>
+        <p>Enter the username of the person you want to send a friend request to:</p>
+
+        <form method="post" id="friend-request-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <button type="submit" class="btn btn-primary">Send Request</button>
+        </form>
+
+        <div id="toast-message" class="toast">Friend request sent successfully!</div>
+    </div>
+</div>
+
+<script>
+    // Submit the form and show the toast notification
+    document.getElementById('friend-request-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Send AJAX request to submit the form
+        const form = this;
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show toast notification
+                const toast = document.getElementById('toast-message');
+                toast.classList.add('show-toast');
+                setTimeout(() => {
+                    toast.classList.remove('show-toast');
+                }, 3000);
+
+                // Clear the form
+                form.reset();
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+
 {% endblock %}
