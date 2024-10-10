@@ -6,6 +6,7 @@ This project is a simple messaging system built with Django, where users can con
 
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Wire Frames](#wireframes)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Future Enhancements](#future-enhancements)
@@ -30,6 +31,16 @@ This project is a simple messaging system built with Django, where users can con
   - Git for version control
   - Django ORM for database management
   - GitHub and Gitpod for development
+ 
+## WireFrames
+
+- Here is our set of desktop wireframes from planning, including the Homepage/Profile Page (Top to Bottom), Message Page and Friend Requests Page
+- Homepage/Profile Page (Top): ![Home Profile Page](https://github.com/user-attachments/assets/b01ddc5a-85b3-44b1-b48c-ffa71149cbc5)
+- Hompage Mid Section: ![Home Page Mid](https://github.com/user-attachments/assets/9eb6a5fb-fdb9-48ce-b873-e7f198c10a3a)
+- Homepage End Section: ![Home Page Bottom](https://github.com/user-attachments/assets/1b3d72ea-8caf-4286-881f-be6a64927ddb)
+- Message Page: ![Messages Page](https://github.com/user-attachments/assets/51b6add1-5ad1-4357-b58a-b2e3e731e689)
+- Friend Request Page: ![Friend Request Page](https://github.com/user-attachments/assets/80dd91d0-6b5a-4f52-aff4-4e4a5369387d)
+
 
 ## Installation
 
