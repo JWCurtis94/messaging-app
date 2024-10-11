@@ -7,10 +7,10 @@ SECRET_KEY = 'django-insecure-r(r4$g$(=7s9rc)ufw)q&6bi+u0ovzd1n+bfh%xvn(yu0b$#lz
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-jwcurtis94-messagingapp-mp6mhq98vzj.ws.codeinstitute-ide.net', '8000-jwcurtis94-messagingapp-wpv0l4i6cum.ws.codeinstitute-ide.net', 'localhost']
+ALLOWED_HOSTS = ['8000-jwcurtis94-messagingapp-n9nh4p4dztx.ws.codeinstitute-ide.net', '8000-jwcurtis94-messagingapp-wpv0l4i6cum.ws.codeinstitute-ide.net', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-jwcurtis94-messagingapp-mp6mhq98vzj.ws.codeinstitute-ide.net', 'https://8000-jwcurtis94-messagingapp-wpv0l4i6cum.ws.codeinstitute-ide.net',
+    'http://8000-jwcurtis94-messagingapp-n9nh4p4dztx.ws.codeinstitute-ide.net/messages/', 'https://8000-jwcurtis94-messagingapp-wpv0l4i6cum.ws.codeinstitute-ide.net',
     'http://localhost:8000'
 ]
 
@@ -90,4 +90,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/messages/'
+LOGIN_REDIRECT_URL = 'messages/<int:user_id>/'
